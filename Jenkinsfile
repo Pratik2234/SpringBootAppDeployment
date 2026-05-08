@@ -25,7 +25,7 @@ pipeline{
     stage('Deploy Application'){
       steps{
         bat '''
-        start java -jar build\\libs\\*.jar
+        start java -jar build\\libs\\SpringBootAppDeployment-0.0.1-SNAPSHOT.jar
         '''
       }
     }
