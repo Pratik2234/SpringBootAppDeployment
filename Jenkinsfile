@@ -1,0 +1,30 @@
+pipeline{
+  agent any
+
+  stages{
+
+    stage('Build'){
+     steps{
+      bat 'gradlew.bat clean build'
+     }
+    }
+
+    stage('Stop Old Application'){
+      steps{
+        bat '''
+        for /f "tokens=5" %%a in ('netstat -aon ^| findstr :8080') do taskkill /F /PID %%a
+        '''
+      }
+    }
+
+    stage('Deploy Application'){
+      steps{
+        bat '''
+        start java -jar build\\libs\\*.jar
+        '''
+      }
+    }
+
+  }
+
+}
