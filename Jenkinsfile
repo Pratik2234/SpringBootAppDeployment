@@ -12,7 +12,7 @@ pipeline{
     stage('Stop Old Application'){
       steps{
         bat '''
-                        for /f "tokens=5" %%a in ('netstat -aon ^| findstr :8080') do (
+                        for /f "tokens=5" %%a in ('netstat -aon ^| findstr :8081') do (
                             if NOT "%%a"=="0" (
                                 taskkill /F /PID %%a
                             )
